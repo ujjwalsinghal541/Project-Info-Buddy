@@ -1,0 +1,38 @@
+{
+  "name": "knowledge-discovery-engine-backend",
+  "version": "1.0.0",
+  "description": "Backend for the Knowledge Discovery Engine personal productivity tool",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "@tavily/core": "^0.7.6",
+    "@types/pg": "^8.20.0",
+    "axios": "^1.17.0",
+    "dotenv": "^17.4.2",
+    "next": "latest",
+    "openai": "^6.42.0",
+    "pg": "^8.21.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@prisma/config": "^7.8.0",
+    "@tailwindcss/postcss": "^4.3.0",
+    "@types/jest": "^26.0.0",
+    "@types/node": "^25.9.3",
+    "jest": "^26.0.0",
+    "prisma": "^7.8.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
+  },
+  "license": "MIT"
+}

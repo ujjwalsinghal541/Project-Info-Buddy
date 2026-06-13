@@ -1,0 +1,42 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Source {
+  id        String     @id @default(uuid())
+  name      String
+  domain    String     @unique
+  enabled   Boolean    @default(true)
+  resources Resource[]
+}
+
+model Topic {
+  id          String     @id @default(uuid())
+  query       String
+  createdAt   DateTime   @default(now())
+  subtopics   Subtopic[]
+}
+
+model Subtopic {
+  id        String     @id @default(uuid())
+  topicId   String
+  topic     Topic      @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  name      String
+  resources Resource[]
+}
+
+model Resource {
+  id         String     @id @default(uuid())
+  title      String
+  url        String
+  sourceId   String?
+  source     Source?    @relation(fields: [sourceId], references: [id])
+  subtopicId String
+  subtopic   Subtopic   @relation(fields: [subtopicId], references: [id], onDelete: Cascade)
+
+  @@unique([url, subtopicId])
+}
