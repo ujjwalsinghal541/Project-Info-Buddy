@@ -3,7 +3,7 @@ import { prisma } from "../lib/prisma";
 
 const tvly = tavily({ apiKey: process.env.TAVILY_API_KEY });
 
-export const searchResourcesForSubtopic = async (subtopicId: string, query: string, sources: { domain: string, id: string, type: string }[]) => {
+export const searchResourcesForSubtopic = async (subtopicId: string, query: string, sources: { domain: string, id: string, type: string, name: string }[]) => {
   const websiteDomains = sources.filter(s => s.type === 'WEBSITE').map(s => s.domain);
   const youtubeSources = sources.filter(s => s.type === 'YOUTUBE');
   
