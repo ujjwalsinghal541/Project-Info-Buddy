@@ -125,8 +125,15 @@ export default function AdminSourcesPage() {
               <td className="p-2 font-mono text-sm">{source.domain}</td>
               <td className="p-2 text-sm">{source.type}</td>
               <td className="p-2">
-                <button onClick={() => toggleEnabled(source)} className="text-sm bg-gray-200 p-1 rounded">
-                  {source.enabled ? 'Yes' : 'No'}
+                <button 
+                  onClick={() => toggleEnabled(source)} 
+                  className={`text-sm px-3 py-1 rounded font-medium transition-colors ${
+                    source.enabled 
+                      ? 'bg-green-100 text-green-800 hover:bg-green-200' 
+                      : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                  }`}
+                >
+                  {source.enabled ? 'Enabled' : 'Disabled'}
                 </button>
               </td>
               <td className="p-2">

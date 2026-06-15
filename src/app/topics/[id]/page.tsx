@@ -134,7 +134,7 @@ export default function TopicPage() {
                 {subtopic.resources.map((resource) => (
                   <div 
                     key={resource.id}
-                    className="group bg-white dark:bg-zinc-900 p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all shadow-sm hover:shadow-md"
+                    className="relative group bg-white dark:bg-zinc-900 p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all shadow-sm hover:shadow-md"
                   >
                     <div className="flex flex-col h-full justify-between gap-4">
                       <div className="space-y-3">

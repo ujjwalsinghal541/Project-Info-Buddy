@@ -47,6 +47,10 @@ export const searchResourcesForSubtopic = async (subtopicId: string, query: stri
     });
 
     ytResponse.results.forEach((result: any) => {
+      console.log('--- Tavily Result ---');
+      console.log('Title:', result.title);
+      console.log('URL:', result.url);
+      
       const isYouTube = result.url.includes('youtube.com') || result.url.includes('youtu.be');
       
       // Strict Verification:
