@@ -6,10 +6,16 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum SourceType {
+  WEBSITE
+  YOUTUBE
+}
+
 model Source {
   id        String     @id @default(uuid())
   name      String
   domain    String     @unique
+  type      SourceType @default(WEBSITE)
   enabled   Boolean    @default(true)
   resources Resource[]
 }

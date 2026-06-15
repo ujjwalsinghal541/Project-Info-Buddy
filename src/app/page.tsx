@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+import Link from "next/link";
+
 export default function Home() {
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -40,8 +42,18 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen items-center justify-center bg-zinc-50 dark:bg-zinc-950 p-4">
-      <div className="w-full max-w-2xl space-y-8">
+    <div className="flex flex-col min-h-screen bg-zinc-50 dark:bg-zinc-950 p-4">
+      <div className="absolute top-4 right-4">
+        <Link 
+          href="/admin" 
+          className="px-4 py-2 text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
+        >
+          Admin
+        </Link>
+      </div>
+      
+      <div className="flex-1 flex flex-col items-center justify-center">
+        <div className="w-full max-w-2xl space-y-8">
         <div className="text-center space-y-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
             Knowledge Discovery Engine
@@ -105,6 +117,7 @@ export default function Home() {
           )}
         </form>
       </div>
+    </div>
     </div>
   );
 }

@@ -13,8 +13,12 @@ export const discoverTopic = async (query: string) => {
     const subtopicNames = await generateSubtopics(query);
 
     // 3. Save generated subtopics
-    const subtopics = await Promise.all(
-      subtopicNames.map((name) =>
+    const subtopics = await Promise.all([
+      // Add a hidden "main topic" subtopic to catch the most direct matches
+      prisma.subtopic.create({
+        data: { name: "Overview and Direct Matches", topicId: topic.id }
+      }),
+      ...subtopicNames.map((name) =>
         prisma.subtopic.create({
           data: {
             name,
@@ -22,20 +26,23 @@ export const discoverTopic = async (query: string) => {
           },
         })
       )
-    );
+    ]);
 
     // 4. Load enabled sources for targeted searching
     const sources = await prisma.source.findMany({
       where: { enabled: true },
-      select: { id: true, domain: true },
+      select: { id: true, domain: true, type: true, name: true },
     });
 
     // 5. Fetch and save resources for each subtopic in parallel
     await Promise.all(
       subtopics.map(async (subtopic) => {
+        // If it's the "Overview" subtopic, use the main query. Otherwise, use the subtopic name.
+        const searchQuery = subtopic.name === "Overview and Direct Matches" ? query : subtopic.name;
+        
         const searchResults = await searchResourcesForSubtopic(
           subtopic.id,
-          subtopic.name,
+          searchQuery,
           sources
         );
 
