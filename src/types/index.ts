@@ -13,3 +13,10 @@ export interface User {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface SearchSource {
+    id: string;
+    domain: string;
+    type: string;
+    name: string;
+}
